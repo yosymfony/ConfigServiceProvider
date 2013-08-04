@@ -1,0 +1,23 @@
+{
+    "name": "yosymfony/ConfigServiceProvider",
+    "description": "A configuration ServiceProvider for Silex based on symfony/config with support for yaml and toml",
+    "keywords": ["silex", "config", "configuration", "yaml", "toml"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Victor Puertas",
+			"email": "vpgugr@gmail.com",
+			"homepage": "http://yosymfony.com"
+		}
+    ],
+    "require": {
+        "silex/silex": "~1.0",
+        "symfony/config": "2.3.*@dev",
+        "yosymfony/toml": "dev-master",
+        "symfony/yaml": "2.3.*@dev"
+    },
+    "autoload": {
+        "psr-0": { "Yosymfony\\Silex\\ConfigServiceProvider": "src/" }
+    }
+}
