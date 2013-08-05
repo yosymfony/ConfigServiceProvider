@@ -19,5 +19,10 @@
     },
     "autoload": {
         "psr-0": { "Yosymfony\\Silex\\ConfigServiceProvider": "src/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }
