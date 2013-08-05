@@ -6,9 +6,9 @@
     "authors": [
         {
             "name": "Victor Puertas",
-			"email": "vpgugr@gmail.com",
-			"homepage": "http://yosymfony.com"
-		}
+            "email": "vpgugr@gmail.com",
+            "homepage": "http://yosymfony.com"
+        }
     ],
     "require": {
         "silex/silex": "~1.0",
