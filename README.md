@@ -86,9 +86,25 @@ you can create the below definition:
 and check your repository: `$repository->validateWith(new MyConfigDefinitions());`
 An exception will be thrown if any definition constraints are violated.
 
-## Merge
-You can merget a repository A with other B with C as result: `$resultC = $repositoryA->mergeWith($repositoryB);`
+### Merge
+You can merget a repository A with other B with C as result: 
+`$resultC = $repositoryA->mergeWith($repositoryB);`. 
 The values of `$repositoryB` have less priority than `$repositoryA`.
+
+### Create a blank repository
+Create a blank repository is too easy. You only need create a instance of 
+`ConfigRepository` and use the array interface or set method to insert new values:
+
+    use Yosymfony\Silex\ConfigServiceProvider\ConfigRepository;
+    
+    //...
+    
+    $repository = new ConfigRepository();
+    $repository->set('key1', 'value1');
+    // or
+    $repository['key1'] = 'value1';
+    
+and the next, you merge with others or validate it.
 
 Unit tests
 ----------
