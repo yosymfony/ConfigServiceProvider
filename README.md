@@ -42,6 +42,14 @@ Load a configuration file (Yaml or Toml):
     // or load with absolute path:
     $repository = $app['configuration']->load('/var/config/user1.yml');
     
+Load inline configuration:
+
+    use Yosymfony\Silex\ConfigServiceProvider\Config;
+    
+    $repository = $app['configuration']->load('server: "mail.yourname.com"', Config::TYPE_YAML);
+    // or
+    $repository = $app['configuration']->load('server = "mail.yourname.com"', Config::TYPE_TOML);
+    
 Repository
 ----------
 The configuration file is loaded to a repository. A repository is a wrapper with 
