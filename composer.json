@@ -1,6 +1,6 @@
 {
-    "name": "yosymfony/ConfigServiceProvider",
-    "description": "A configuration ServiceProvider for Silex based on symfony/config with support for yaml and toml",
+    "name": "yosymfony/config-serviceprovider",
+    "description": "A configuration ServiceProvider for Silex based on symfony/config component with support for yaml and toml",
     "keywords": ["silex", "config", "configuration", "yaml", "toml"],
     "type": "library",
     "license": "MIT",
