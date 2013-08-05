@@ -20,7 +20,12 @@ class ConfigServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $app = new Application();
         $app->register(new ConfigServiceProvider());
-        
+
         $this->assertInstanceOf('Yosymfony\Silex\ConfigServiceProvider\Config', $app['configuration']);
+
+	$repository = $app['configuration']->load(__dir__.'/Fixtures/config.yml');
+
+	$this->assertInstanceOf('Yosymfony\Silex\ConfigServiceProvider\ConfigRepositoryInterface', $repository);
+	$this->assertTrue(count($repository) > 0);
     }
 }
