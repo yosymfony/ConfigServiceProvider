@@ -14,7 +14,7 @@
     "require": {
         "silex/silex": "~1.0",
         "symfony/config": "2.3.*@dev",
-        "yosymfony/toml": "dev-master",
+        "yosymfony/toml": "0.1.*",
         "symfony/yaml": "2.3.*@dev",
         "php": ">=5.3.0"
     },
