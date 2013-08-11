@@ -39,10 +39,13 @@ class ConfigServiceProvider implements ServiceProviderInterface
     
     public function register(Application $app)
     {
-        $app['configuration'] = $app->share(function(){
+        $app['configuration.custom_loaders'] = $this->customLoaders;
+        $app['configuration.directories'] = $this->configDirectories;
+        
+        $app['configuration'] = $app->share(function($app){
             
-            $locator = new FileLocator($this->configDirectories);
-            $loaders = count($this->customLoaders) > 0 ? $this->customLoaders : array(
+            $locator = new FileLocator($app['configuration.directories']);
+            $loaders = count($app['configuration.custom_loaders']) > 0 ? $app['configuration.custom_loaders'] : array(
                 new Loaders\TomlLoader($locator), 
                 new Loaders\YamlLoader($locator),
             );
