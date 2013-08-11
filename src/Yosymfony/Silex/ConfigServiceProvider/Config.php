@@ -51,9 +51,10 @@ class Config
      * @param mixed  $resource A resource
      * @param string $type     The resource type
      *
-     * @return mixed
+     * @return ConfigRepositoryInterface
      *
-     * @throws FileLoaderLoadException if no loader is found.
+     * @throws FileLoaderLoadException if the loader not found.
+     * @throws RuntimeException if the loader not return a repository instance
      */
     public function load($resource, $type = null)
     {
