@@ -54,7 +54,7 @@ class Config
      * @return ConfigRepositoryInterface
      *
      * @throws FileLoaderLoadException if the loader not found.
-     * @throws RuntimeException if the loader not return a repository instance
+     * @throws UnexpectedValueException if the loader not return a repository instance
      */
     public function load($resource, $type = null)
     {
@@ -62,7 +62,7 @@ class Config
         
         if(!$repository instanceof ConfigRepositoryInterface)
         {
-            throw new \RuntimeException('The loader must be return a repository instance');
+            throw new \UnexpectedValueException('The loader must be return a repository instance');
         }
         
         return $repository;
