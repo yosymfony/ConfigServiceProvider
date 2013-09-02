@@ -6,6 +6,7 @@ A configuration ServiceProvider for Silex based on
 Yaml and Toml.
 
 [![Build Status](https://travis-ci.org/yosymfony/ConfigServiceProvider.png?branch=master)](https://travis-ci.org/yosymfony/ConfigServiceProvider)
+[![Total Downloads](https://poser.pugx.org/yosymfony/config-serviceprovider/downloads.png)](https://packagist.org/packages/yosymfony/config-serviceprovider)
 
 Installation
 ------------
