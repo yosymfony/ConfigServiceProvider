@@ -112,7 +112,17 @@ class ConfigRepository implements ConfigRepositoryInterface
     {
         $processor = new Processor();
         
-        $processor->processConfiguration($definition, array($this->getRaw()));
+        $processor->processConfiguration($definition, array($this->getArray()));
+    }
+    
+    /**
+     * Get an array representation
+     * 
+     * @return array
+     */
+    public function getArray()
+    {
+        return $this->repository;
     }
     
     /**

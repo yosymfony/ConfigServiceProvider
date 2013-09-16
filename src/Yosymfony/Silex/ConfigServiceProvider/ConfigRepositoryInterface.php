@@ -75,4 +75,11 @@ interface ConfigRepositoryInterface extends \ArrayAccess, \Countable, \Iterator
      * @return mixed
      */
     public function getRaw();
+    
+    /**
+     * Get an array representation
+     * 
+     * @return array
+     */
+    public function getArray();
 }

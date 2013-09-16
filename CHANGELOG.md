@@ -5,3 +5,4 @@ CHANGELOG
 ------------------
 
 * Initial release.
+* Added new method getRaw() in ConfigRepositoryInterface #1.

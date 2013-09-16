@@ -72,6 +72,15 @@ class ConfigRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $repository->getRaw());
     }
     
+    public function testRespositoryGetArray()
+    {
+        $repository = new ConfigRepository();
+        $this->assertTrue(is_array($repository->getArray()));
+        
+        $repository['val'] = 'value';
+        $this->assertCount(1, $repository->getArray());
+    }
+    
     public function testRepositoryUnsetKey()
     {
         $repository = new ConfigRepository();
