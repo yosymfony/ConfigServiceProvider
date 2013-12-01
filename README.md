@@ -99,9 +99,18 @@ you can create the below definition:
 and check your repository: `$repository->validateWith(new MyConfigDefinitions());`
 An exception will be thrown if any definition constraints are violated.
 
-### Merge
-You can merget a repository A with other B with C as result: 
-`$resultC = $repositoryA->mergeWith($repositoryB);`. 
+### Operations
+The operation ***mergeWith* was deprecated since version 1.2.0 and replaced by
+*union* method**.
+
+#### Unions
+You can get the union of repository A with other B with C as result: 
+`$resultC = $repositoryA->union($repositoryB);`. 
+The values of `$repositoryB` have less priority than `$repositoryA`.
+
+#### Intersections
+You can get the intersection of repository A with other B with C as result: 
+`$resultC = $repositoryA->intersection($repositoryB);`. 
 The values of `$repositoryB` have less priority than `$repositoryA`.
 
 ### Create a blank repository

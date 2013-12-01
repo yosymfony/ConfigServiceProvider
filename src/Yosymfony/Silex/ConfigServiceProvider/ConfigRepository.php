@@ -77,7 +77,9 @@ class ConfigRepository implements ConfigRepositoryInterface
     
     /**
      * Merge the repository with $repository. The values of $repository have
-     * less precedence
+     * less precedence.
+     * 
+     * @deprecated Deprecated since 1.2.0. It's replaced by union method.
      * 
      * @param ConfigRepositoryInterface $repository
      * 
@@ -85,7 +87,20 @@ class ConfigRepository implements ConfigRepositoryInterface
      */
     public function mergeWith(ConfigRepositoryInterface $repository)
     {
-        $merge = function($main, $second)
+        return $this->union($repository);
+    }
+    
+    /**
+     * Union the repository with $repository. The values of $repository have
+     * less precedence
+     * 
+     * @param ConfigRepositoryInterface $repository
+     * 
+     * @return ConfigRepositoryInterface A new repository
+     */
+    public function union(ConfigRepositoryInterface $repository)
+    {
+        $union = function($main, $second)
         {
             foreach($second as $key => $value)
             {
@@ -98,7 +113,35 @@ class ConfigRepository implements ConfigRepositoryInterface
             return $main;
         };
         
-        return $merge($this, $repository);
+        return $union($this, $repository);
+    }
+    
+    /**
+     * Intersection the repository with $repository. The values of $repository have
+     * less precedence
+     * 
+     * @param ConfigRepositoryInterface $repository
+     * 
+     * @return ConfigRepositoryInterface A new repository
+     */
+    public function intersection(ConfigRepositoryInterface $repository)
+    {
+        $interception = function($main, $second)
+        {
+            $result = [];
+            $keysMain = array_keys($main);
+            $keysSecond = array_keys($second);
+            $keys = array_intersect($keyMain, $keySecond);
+            
+            foreach($keys as $key)
+            {
+                $result[$key] = $main[$main];
+            }
+            
+            return $result;
+        };
+        
+        return $interception($this, $repository);
     }
     
     /**

@@ -115,7 +115,7 @@ class ConfigRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($repository[0], 1);
     }
     
-    public function testRepositoryMerge()
+    public function testRepositoryUnion()
     {
         $repositoryA = new ConfigRepository();
         $repositoryA['port'] = 25;
@@ -126,11 +126,29 @@ class ConfigRepositoryTest extends \PHPUnit_Framework_TestCase
         $repositoryB['server'] = 'mail.yourname.com';
         $repositoryB['secure'] = true;
         
-        $merged = $repositoryA->mergeWith($repositoryB);
-        $this->assertInstanceOf('Yosymfony\Silex\ConfigServiceProvider\ConfigRepositoryInterface', $merged);
-        $this->assertEquals($merged['port'], 25);
-        $this->assertEquals($merged['server'], 'localhost');
-        $this->assertEquals($merged['secure'], true);
+        $union = $repositoryA->union($repositoryB);
+        $this->assertInstanceOf('Yosymfony\Silex\ConfigServiceProvider\ConfigRepositoryInterface', $union);
+        $this->assertEquals($union['port'], 25);
+        $this->assertEquals($union['server'], 'localhost');
+        $this->assertEquals($union['secure'], true);
+    }
+    
+    public function testRepositoryIntersection()
+    {
+        $repositoryA = new ConfigRepository();
+        $repositoryA['port'] = 25;
+        $repositoryA['server'] = 'localhost';
+        
+        $repositoryB = new ConfigRepository();
+        $repositoryB['port'] = 24;
+        $repositoryB['server'] = 'mail.yourname.com';
+        $repositoryB['secure'] = true;
+        
+        $intersection = $repositoryA->union($repositoryB);
+        $this->assertInstanceOf('Yosymfony\Silex\ConfigServiceProvider\ConfigRepositoryInterface', $intersection);
+        $this->assertEquals($intersection['port'], 25);
+        $this->assertEquals($intersection['server'], 'localhost');
+        $this->assertArrayNotHasKey('secure', $intersection);
     }
     
     public function testRepositoryDefinitions()

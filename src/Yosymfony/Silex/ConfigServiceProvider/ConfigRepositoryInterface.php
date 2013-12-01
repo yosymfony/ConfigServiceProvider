@@ -18,7 +18,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * 
  * @author Victor Puertas <vpgugr@gmail.com>
  */
-interface ConfigRepositoryInterface extends \ArrayAccess, \Countable, \Iterator
+interface ConfigRepositoryInterface extends ConfigRepositoryOperationInterface, \ArrayAccess, \Countable, \Iterator
 {
     /**
      * Load data repository
@@ -51,16 +51,6 @@ interface ConfigRepositoryInterface extends \ArrayAccess, \Countable, \Iterator
      * @param string $key Key name
      */
     public function del($key);
-    
-    /**
-     * Merge the repository with $repository. The values of $repository have
-     * less precedence
-     * 
-     * @param ConfigRepositoryInterface $repository
-     * 
-     * @return ConfigRepositoryInterface A new repository
-     */
-    public function mergeWith(ConfigRepositoryInterface $repository);
     
     /**
      * Validate the configurations values
