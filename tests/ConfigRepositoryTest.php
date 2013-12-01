@@ -144,10 +144,12 @@ class ConfigRepositoryTest extends \PHPUnit_Framework_TestCase
         $repositoryB['server'] = 'mail.yourname.com';
         $repositoryB['secure'] = true;
         
-        $intersection = $repositoryA->union($repositoryB);
+        $intersection = $repositoryA->intersection($repositoryB);
         $this->assertInstanceOf('Yosymfony\Silex\ConfigServiceProvider\ConfigRepositoryInterface', $intersection);
         $this->assertEquals($intersection['port'], 25);
+        $this->assertEquals($intersection->get('port'), 25);
         $this->assertEquals($intersection['server'], 'localhost');
+        $this->assertEquals($intersection->get('server'), 'localhost');
         $this->assertArrayNotHasKey('secure', $intersection);
     }
     

@@ -128,14 +128,14 @@ class ConfigRepository implements ConfigRepositoryInterface
     {
         $interception = function($main, $second)
         {
-            $result = [];
-            $keysMain = array_keys($main);
-            $keysSecond = array_keys($second);
-            $keys = array_intersect($keyMain, $keySecond);
+            $result = new ConfigRepository();
+            $keysMain = array_keys($main->getArray());
+            $keysSecond = array_keys($second->getArray());
+            $keys = array_intersect($keysMain, $keysSecond);
             
             foreach($keys as $key)
             {
-                $result[$key] = $main[$main];
+                $result[$key] = $main[$key];
             }
             
             return $result;
