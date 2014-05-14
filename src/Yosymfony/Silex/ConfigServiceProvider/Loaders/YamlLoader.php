@@ -24,12 +24,6 @@ class YamlLoader extends FileLoader
 {
     public function load($resource, $type = null)
     {
-        if(!class_exists('Symfony\\Component\\Yaml\\Yaml'))
-        {
-            throw new \RuntimeException('Unable to read yaml string because symfony\Yaml Parser is not installed.');
-            
-        }
-        
         if(null === $type)
         {
             $resource = $this->getLocator()->locate($resource, null, true);

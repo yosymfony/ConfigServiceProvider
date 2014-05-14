@@ -62,7 +62,7 @@ class Config
         
         if(!$repository instanceof ConfigRepositoryInterface)
         {
-            throw new \UnexpectedValueException('The loader must be return a repository instance');
+            throw new \UnexpectedValueException('The loader must return a repository instance');
         }
         
         return $repository;
