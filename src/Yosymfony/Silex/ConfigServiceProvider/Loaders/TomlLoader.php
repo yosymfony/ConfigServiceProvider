@@ -24,12 +24,6 @@ class TomlLoader extends FileLoader
 {
     public function load($resource, $type = null)
     {
-        if(!class_exists('Yosymfony\\Toml\\Toml'))
-        {
-            throw new \RuntimeException('Unable to read toml string because Yosymfony\Toml Parser is not installed.');
-            
-        }
-        
         if(null === $type)
         {
             $resource = $this->getLocator()->locate($resource, null, true);
