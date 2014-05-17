@@ -14,7 +14,7 @@ namespace Yosymfony\Silex\ConfigServiceProvider;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * Interface that must be implemented by configuration reader
+ * Interface that must be implemented by configuration repositories
  * 
  * @author Victor Puertas <vpgugr@gmail.com>
  */
@@ -24,6 +24,8 @@ interface ConfigRepositoryInterface extends ConfigRepositoryOperationInterface, 
      * Load data repository
      * 
      * @param mixed $data
+     * 
+     * @throws \InvalidArgumentException When argument is not valid
      */
     public function load($data);
     
@@ -56,6 +58,8 @@ interface ConfigRepositoryInterface extends ConfigRepositoryOperationInterface, 
      * Validate the configurations values
      * 
      * @param ConfigurationInterface $definition The rules
+     * 
+     * @throws \Exception If any value is not of the expected type, is mandatory and yet undefined, or could not be validated in some other way
      */
     public function validateWith(ConfigurationInterface $definition);
     
