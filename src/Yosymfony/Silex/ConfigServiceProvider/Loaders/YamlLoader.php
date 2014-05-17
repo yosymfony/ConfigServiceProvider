@@ -11,22 +11,23 @@
 
 namespace Yosymfony\Silex\ConfigServiceProvider\Loaders;
 
-use Symfony\Component\Config\Loader\FileLoader;
-use Yosymfony\Silex\ConfigServiceProvider\ConfigRepository;
 use Symfony\Component\Yaml\Yaml;
+use Yosymfony\Silex\ConfigServiceProvider\ConfigFileLoader;
+use Yosymfony\Silex\ConfigServiceProvider\ConfigRepository;
 
 /**
  * Yaml file loader
  * 
  * @author Victor Puertas <vpgugr@gmail.com>
  */
-class YamlLoader extends FileLoader
+class YamlLoader extends ConfigFileLoader
 {
     public function load($resource, $type = null)
     {
         if(null === $type)
         {
-            $resource = $this->getLocator()->locate($resource, null, true);
+            $resourceName = $this->getLocator()->locate($resource, null, true);
+            $resource = $this->getResolvedName($resourceName);
         }
         
         $data = Yaml::parse($resource);
