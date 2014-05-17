@@ -14,4 +14,5 @@ CHANGELOG
 -----
 * [New] *ConfigRepositoryOperationInterface*: Define the operations with repositories.
 * [New] Operations with repositories: *union* and *intersection* method was added to repository.
+* [New] Support to .dist files.
 * [Deprecated] Method *mergeWith* of repository is deprecated and replaced by *union* method.
