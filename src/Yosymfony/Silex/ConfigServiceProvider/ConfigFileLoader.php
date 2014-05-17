@@ -21,26 +21,33 @@ use Symfony\Component\Config\Loader\FileLoader;
 abstract class ConfigFileLoader extends FileLoader
 {
     /**
-     * Get the resolver name of a file resource follow the next hierachy:
+     * Get the location of a file resource follow the next hierachy:
      *    1. filename.ext
      *    2. filename.ext.dist (if filename.ext not exists)
      * 
      *    or
      * 
-     *    filename.ext.dist if the .dist is included in resource.
+     *    filename.ext.dist if the .dist is included in the resource.
      * 
      * @param string $resource Filename path
      * 
      * @return string
      */
-    public function getResolvedName($resource)
+    public function getLocation($resource)
     {
         if(false === $this->isDistExtension($resource))
         {
-            $resource = file_exists($resource) ? $resource : $resource . '.dist';
+            try 
+            {
+                return $this->getLocator()->locate($resource, null, true);
+            } 
+            catch (\InvalidArgumentException $ex) 
+            {
+                $resource =  $resource . '.dist';
+            }
         }
         
-        return $resource;
+        return  $this->getLocator()->locate($resource, null, true);
     }
     
     /**

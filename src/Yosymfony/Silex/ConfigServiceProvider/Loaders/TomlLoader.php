@@ -26,8 +26,7 @@ class TomlLoader extends ConfigFileLoader
     {
         if(null === $type)
         {
-            $resourceName = $this->getLocator()->locate($resource, null, true);
-            $resource = $this->getResolvedName($resourceName);
+            $resource = $this->getLocation($resource);
         }
         
         $data = Toml::parse($resource);

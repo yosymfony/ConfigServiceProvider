@@ -56,5 +56,6 @@ class ConfigServiceProvider implements ServiceProviderInterface
     
     public function boot(Application $app)
     {
+        // do not nothing
     }
 }

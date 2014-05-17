@@ -33,7 +33,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         ));
     }
     
-    public function testTomlInlineConfig()
+    public function testTomlInline()
     {    
         $repository = $this->config->load('var = "my value"', Config::TYPE_TOML);
         $this->assertNotNull($repository);
@@ -43,7 +43,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($repository->getRaw()));
     }
     
-    public function testYamlInlineConfig()
+    public function testYamlInline()
     {        
         $repository = $this->config->load('var: "my value"', Config::TYPE_YAML);
         $this->assertNotNull($repository);
@@ -53,7 +53,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($repository->getRaw()));
     }
     
-    public function testTomlFileConfig()
+    public function testTomlFile()
     {
         $repository = $this->config->load('config.toml');
         $this->assertNotNull($repository);
@@ -63,7 +63,27 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($repository['server'], 'mail.yourname.com');
     }
     
-    public function testYamlFileConfig()
+    public function testTomlDistFile()
+    {
+        $repository = $this->config->load('config.toml.dist');
+        $this->assertNotNull($repository);
+        $this->assertEquals($repository->get('port'), 25);
+        $this->assertEquals($repository['port'], 25);
+        $this->assertEquals($repository->get('server'), 'mail2.yourname.com');
+        $this->assertEquals($repository['server'], 'mail2.yourname.com');
+    }
+    
+    public function testLoadFileWithAbsolutePath()
+    {   
+        $repository = $this->config->load(__dir__.'/Fixtures/config.yml');
+        $this->assertNotNull($repository);
+        $this->assertEquals($repository->get('port'), 25);
+        $this->assertEquals($repository['port'], 25);
+        $this->assertEquals($repository->get('server'), 'mail.yourname.com');
+        $this->assertEquals($repository['server'], 'mail.yourname.com');
+    }
+    
+    public function testYamlFile()
     {   
         $repository = $this->config->load('config.yml');
         $this->assertNotNull($repository);
@@ -72,11 +92,31 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($repository->get('server'), 'mail.yourname.com');
         $this->assertEquals($repository['server'], 'mail.yourname.com');
     }
+    
+    public function testYamlDistFile()
+    {   
+        $repository = $this->config->load('config.yml.dist');
+        $this->assertNotNull($repository);
+        $this->assertEquals($repository->get('port'), 25);
+        $this->assertEquals($repository['port'], 25);
+        $this->assertEquals($repository->get('server'), 'mail2.yourname.com');
+        $this->assertEquals($repository['server'], 'mail2.yourname.com');
+    }
+    
+    public function testOnlyDistFile()
+    {   
+        $repository = $this->config->load('config-server.yml');
+        $this->assertNotNull($repository);
+        $this->assertEquals($repository->get('port'), 80);
+        $this->assertEquals($repository['port'], 80);
+        $this->assertEquals($repository->get('host'), 'yourname.com');
+        $this->assertEquals($repository['host'], 'yourname.com');
+    }
 
     /**
      * @expectedException Yosymfony\Toml\Exception\ParseException
      */
-    public function testTomlInlineFailConfig()
+    public function testTomlInlineFail()
     {    
         $repository = $this->config->load('var = "my value', Config::TYPE_TOML);
     }
@@ -84,7 +124,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException Symfony\Component\Yaml\Exception\ParseException
      */
-    public function testYamlInlineFailConfig()
+    public function testYamlInlineFail()
     {    
         $repository = $this->config->load('var : [ elemnt', Config::TYPE_YAML);
     }
@@ -92,7 +132,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException Yosymfony\Toml\Exception\ParseException
      */
-    public function testTomlFileFailConfig()
+    public function testTomlFileFail()
     {    
         $repository = $this->config->load('configFail.toml');
     }
@@ -100,9 +140,8 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException Symfony\Component\Yaml\Exception\ParseException
      */
-    public function testYamlFileFailConfig()
+    public function testYamlFileFail()
     {    
         $repository = $this->config->load('configFail.yml');
     }
-
 }
