@@ -169,7 +169,7 @@ class ConfigRepository implements ConfigRepositoryInterface
     }
     
     /**
-     * Get the repository's raw representation
+     * Get the raw representation of the repository
      * 
      * @return mixed
      */
