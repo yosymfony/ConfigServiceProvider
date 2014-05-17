@@ -37,7 +37,7 @@ class Config
     {
         if(null === $loaders || 0 == count($loaders))
         {
-            throw new \InvalidArgumentException('Array of loaders is empty');
+            throw new \InvalidArgumentException('The Array of loaders is empty');
         }
         
         $this->loaders = $loaders;
@@ -53,8 +53,8 @@ class Config
      *
      * @return ConfigRepositoryInterface
      *
-     * @throws FileLoaderLoadException if the loader not found.
-     * @throws UnexpectedValueException if the loader not return a repository instance
+     * @throws Symfony\Component\Config\Exception\FileLoaderLoadException If the loader not found.
+     * @throws \UnexpectedValueException If the loader not return a repository instance
      */
     public function load($resource, $type = null)
     {

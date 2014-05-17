@@ -32,6 +32,8 @@ abstract class ConfigFileLoader extends FileLoader
      * @param string $resource Filename path
      * 
      * @return string
+     * 
+     * @throws \InvalidArgumentException When the file is not found 
      */
     public function getLocation($resource)
     {

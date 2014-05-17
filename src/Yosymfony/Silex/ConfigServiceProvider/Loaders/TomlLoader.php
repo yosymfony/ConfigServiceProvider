@@ -16,7 +16,7 @@ use Yosymfony\Silex\ConfigServiceProvider\ConfigFileLoader;
 use Yosymfony\Silex\ConfigServiceProvider\ConfigRepository;
 
 /**
- * Toml file loader
+ * TOML file loader
  * 
  * @author Victor Puertas <vpgugr@gmail.com>
  */

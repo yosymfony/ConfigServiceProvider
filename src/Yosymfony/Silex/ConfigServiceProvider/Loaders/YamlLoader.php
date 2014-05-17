@@ -16,7 +16,7 @@ use Yosymfony\Silex\ConfigServiceProvider\ConfigFileLoader;
 use Yosymfony\Silex\ConfigServiceProvider\ConfigRepository;
 
 /**
- * Yaml file loader
+ * YAML file loader
  * 
  * @author Victor Puertas <vpgugr@gmail.com>
  */
