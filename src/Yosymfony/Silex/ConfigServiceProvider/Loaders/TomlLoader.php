@@ -39,6 +39,6 @@ class TomlLoader extends ConfigFileLoader
     
     public function supports($resource, $type = null)
     {
-        return 'toml' === $type || is_string($resource) && preg_match('#\.toml(\.dist)?$#', $resource);
+        return 'toml' === $type || (is_string($resource) && preg_match('#\.toml(\.dist)?$#', $resource));
     }
 }

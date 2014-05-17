@@ -39,6 +39,6 @@ class YamlLoader extends ConfigFileLoader
     
     public function supports($resource, $type = null)
     {
-        return 'yaml' === $type || is_string($resource) && preg_match('#\.yml(\.dist)?$#', $resource);
+        return 'yaml' === $type || (is_string($resource) && preg_match('#\.yml(\.dist)?$#', $resource));
     }
 }
