@@ -48,8 +48,8 @@ class Config
     /**
      * Loads a resource like file or inline configuration
      *
-     * @param mixed  $resource A resource
-     * @param string $type     The resource type
+     * @param string $resource A resource
+     * @param string $type     The resource type. Don't set this argument in files case.
      *
      * @return ConfigRepositoryInterface
      *
