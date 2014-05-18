@@ -18,7 +18,7 @@ Use [Composer](http://getcomposer.org/) to install Yosyfmony ConfigServiceProvid
 Add the following to your `composer.json` and run `composer update`.
 
     "require": {
-        "yosymfony/config-serviceprovider": "1.2.x-dev"
+        "yosymfony/config-serviceprovider": "dev-develop"
     }
 
 More informations about the package on 
