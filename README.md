@@ -18,7 +18,7 @@ Use [Composer](http://getcomposer.org/) to install Yosyfmony ConfigServiceProvid
 Add the following to your `composer.json` and run `composer update`.
 
     "require": {
-        "yosymfony/config-serviceprovider": "1.0.*@dev"
+        "yosymfony/config-serviceprovider": "1.2.x-dev"
     }
 
 More informations about the package on 
@@ -38,7 +38,7 @@ reference it only with the file's name
         '/var/www/general-config'
     )));
     
-Load a configuration file (Yaml or Toml):
+### Load a configuration file (Yaml or Toml):
 
     $repository = $app['configuration']->load('user.yml');
     // or
@@ -47,7 +47,14 @@ Load a configuration file (Yaml or Toml):
     // or load with absolute path:
     $repository = $app['configuration']->load('/var/config/user1.yml');
     
-Load inline configuration:
+#### .dist files
+
+This library have support to `.dist` files. The location of a file follow the next hierachy:
+
+*    1. filename.ext
+*    2. filename.ext.dist (if filename.ext not exists)
+
+### Load inline configuration:
 
     use Yosymfony\Silex\ConfigServiceProvider\Config;
     
