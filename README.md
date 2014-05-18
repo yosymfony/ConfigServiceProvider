@@ -38,11 +38,9 @@ reference it only with the file's name
         '/var/www/general-config'
     )));
     
-### Load a configuration file (Yaml or Toml):
+### Load a configuration file:
 
     $repository = $app['configuration']->load('user.yml');
-    // or
-    $repository = $app['configuration']->load('user.toml');
     
     // or load with absolute path:
     $repository = $app['configuration']->load('/var/config/user1.yml');
