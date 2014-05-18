@@ -3,7 +3,7 @@ Config ServiceProvider for Silex
 
 A configuration ServiceProvider for Silex based on 
 [Symfony Config component](https://github.com/symfony/Config) with support for 
-Yaml and Toml (0.2.0).
+YAML, TOML (0.2.0) and JSON.
 
 [![Build Status](https://travis-ci.org/yosymfony/ConfigServiceProvider.png?branch=develop)](https://travis-ci.org/yosymfony/ConfigServiceProvider)
 [![Latest Stable Version](https://poser.pugx.org/yosymfony/config-serviceprovider/v/stable.png)](https://packagist.org/packages/yosymfony/config-serviceprovider)
