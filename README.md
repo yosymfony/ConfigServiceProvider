@@ -49,8 +49,8 @@ reference it only with the file's name
 
 This library have support to `.dist` files. The location of a file follow the next hierachy:
 
-*    1. filename.ext
-*    2. filename.ext.dist (if filename.ext not exists)
+- filename.ext
+- filename.ext.dist (if filename.ext not exists)
 
 ### Load inline configuration:
 
