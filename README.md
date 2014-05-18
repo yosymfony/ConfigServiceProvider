@@ -47,7 +47,7 @@ reference it only with the file's name
     // or load with absolute path:
     $repository = $app['configuration']->load('/var/config/user1.yml');
     
-#### .dist files
+#### *.dist* files
 
 This library have support to `.dist` files. The location of a file follow the next hierachy:
 
