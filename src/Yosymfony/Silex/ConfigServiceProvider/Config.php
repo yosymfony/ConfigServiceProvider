@@ -23,6 +23,7 @@ class Config
 {
     const TYPE_TOML = 'toml';
     const TYPE_YAML = 'yaml';
+    const TYPE_JSON = 'json';
     
     private $loaders;
     private $loaderResolver;

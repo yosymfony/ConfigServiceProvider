@@ -48,6 +48,7 @@ class ConfigServiceProvider implements ServiceProviderInterface
             $loaders = count($app['configuration.custom_loaders']) > 0 ? $app['configuration.custom_loaders'] : array(
                 new Loaders\TomlLoader($locator), 
                 new Loaders\YamlLoader($locator),
+                new Loaders\JsonLoader($locator),
             );
             
             return new Config($loaders);
@@ -56,6 +57,6 @@ class ConfigServiceProvider implements ServiceProviderInterface
     
     public function boot(Application $app)
     {
-        // do not nothing
+        // do nothing
     }
 }

@@ -18,6 +18,7 @@ use Yosymfony\Silex\ConfigServiceProvider\Config;
 use Yosymfony\Silex\ConfigServiceProvider\ConfigRepository;
 use Yosymfony\Silex\ConfigServiceProvider\Loaders\TomlLoader;
 use Yosymfony\Silex\ConfigServiceProvider\Loaders\YamlLoader;
+use Yosymfony\Silex\ConfigServiceProvider\Loaders\JsonLoader;
 
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,7 +31,17 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->config = new Config(array(
             new TomlLoader($locator),
             new YamlLoader($locator),
+            new JsonLoader($locator),
         ));
+    }
+    
+    public function testJsonInline()
+    {    
+        $repository = $this->config->load('{ "var": "my value" }', Config::TYPE_JSON);
+        $this->assertNotNull($repository);
+        $this->assertEquals($repository->get('var'), 'my value');
+        $this->assertEquals($repository['var'], 'my value');
+        $this->assertTrue(is_array($repository->getArray()));
     }
     
     public function testTomlInline()
@@ -40,7 +51,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($repository->get('var'), 'my value');
         $this->assertEquals($repository['var'], 'my value');
         $this->assertEquals($repository->get('key_not_exist', 'default'), 'default');
-        $this->assertTrue(is_array($repository->getRaw()));
+        $this->assertTrue(is_array($repository->getArray()));
     }
     
     public function testYamlInline()
@@ -50,7 +61,17 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($repository->get('var'), 'my value');
         $this->assertEquals($repository['var'], 'my value');
         $this->assertEquals($repository->get('key_not_exist', 'default'), 'default');
-        $this->assertTrue(is_array($repository->getRaw()));
+        $this->assertTrue(is_array($repository->getArray()));
+    }
+    
+    public function testJsonFile()
+    {
+        $repository = $this->config->load('config.json');
+        $this->assertNotNull($repository);
+        $this->assertEquals($repository->get('port'), 25);
+        $this->assertEquals($repository['port'], 25);
+        $this->assertEquals($repository->get('server'), 'mail.yourname.com');
+        $this->assertEquals($repository['server'], 'mail.yourname.com');
     }
     
     public function testTomlFile()
@@ -71,16 +92,6 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($repository['port'], 25);
         $this->assertEquals($repository->get('server'), 'mail2.yourname.com');
         $this->assertEquals($repository['server'], 'mail2.yourname.com');
-    }
-    
-    public function testLoadFileWithAbsolutePath()
-    {   
-        $repository = $this->config->load(__dir__.'/Fixtures/config.yml');
-        $this->assertNotNull($repository);
-        $this->assertEquals($repository->get('port'), 25);
-        $this->assertEquals($repository['port'], 25);
-        $this->assertEquals($repository->get('server'), 'mail.yourname.com');
-        $this->assertEquals($repository['server'], 'mail.yourname.com');
     }
     
     public function testYamlFile()
@@ -112,6 +123,24 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($repository->get('host'), 'yourname.com');
         $this->assertEquals($repository['host'], 'yourname.com');
     }
+    
+    public function testLoadFileWithAbsolutePath()
+    {   
+        $repository = $this->config->load(__dir__.'/Fixtures/config.yml');
+        $this->assertNotNull($repository);
+        $this->assertEquals($repository->get('port'), 25);
+        $this->assertEquals($repository['port'], 25);
+        $this->assertEquals($repository->get('server'), 'mail.yourname.com');
+        $this->assertEquals($repository['server'], 'mail.yourname.com');
+    }
+    
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testJsonInlineFail()
+    {    
+        $repository = $this->config->load('{ "var": "value"', Config::TYPE_TOML);
+    }
 
     /**
      * @expectedException Yosymfony\Toml\Exception\ParseException
@@ -127,6 +156,14 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     public function testYamlInlineFail()
     {    
         $repository = $this->config->load('var : [ elemnt', Config::TYPE_YAML);
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testJsonFileFail()
+    {    
+        $repository = $this->config->load('configFail.json');
     }
     
     /**
