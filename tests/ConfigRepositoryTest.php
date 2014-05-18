@@ -18,6 +18,7 @@ use Yosymfony\Silex\ConfigServiceProvider\Config;
 use Yosymfony\Silex\ConfigServiceProvider\ConfigRepository;
 use Yosymfony\Silex\ConfigServiceProvider\Loaders\TomlLoader;
 use Yosymfony\Silex\ConfigServiceProvider\Loaders\YamlLoader;
+use Yosymfony\Silex\ConfigServiceProvider\Loaders\JsonLoader;
 
 class ConfigRepositoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,6 +31,7 @@ class ConfigRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->config = new Config(array(
             new TomlLoader($locator),
             new YamlLoader($locator),
+            new JsonLoader($locator),
         ));
     }
     

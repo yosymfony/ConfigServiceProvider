@@ -11,22 +11,22 @@
 
 namespace Yosymfony\Silex\ConfigServiceProvider\Loaders;
 
-use Symfony\Component\Config\Loader\FileLoader;
-use Yosymfony\Silex\ConfigServiceProvider\ConfigRepository;
 use Yosymfony\Toml\Toml;
+use Yosymfony\Silex\ConfigServiceProvider\ConfigFileLoader;
+use Yosymfony\Silex\ConfigServiceProvider\ConfigRepository;
 
 /**
- * Toml file loader
+ * TOML file loader
  * 
  * @author Victor Puertas <vpgugr@gmail.com>
  */
-class TomlLoader extends FileLoader
+class TomlLoader extends ConfigFileLoader
 {
     public function load($resource, $type = null)
     {
         if(null === $type)
         {
-            $resource = $this->getLocator()->locate($resource, null, true);
+            $resource = $this->getLocation($resource);
         }
         
         $data = Toml::parse($resource);
@@ -38,9 +38,6 @@ class TomlLoader extends FileLoader
     
     public function supports($resource, $type = null)
     {
-        return 'toml' === $type || is_string($resource) && 'toml' === pathinfo(
-            $resource,
-            PATHINFO_EXTENSION
-        );
+        return 'toml' === $type || (is_string($resource) && preg_match('#\.toml(\.dist)?$#', $resource));
     }
 }

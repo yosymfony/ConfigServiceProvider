@@ -24,9 +24,7 @@ class ConfigRepository implements ConfigRepositoryInterface
     protected $repository = array();
     
     /**
-     * Load configuration data from an array
-     * 
-     * @param mixed $configuration
+     * {@inheritdoc}
      */
     public function load($configuration)
     {
@@ -39,12 +37,7 @@ class ConfigRepository implements ConfigRepositoryInterface
     }
     
     /**
-     * Get value from the key
-     * 
-     * @param string $key Key name
-     * @param mixed $default Default value
-     * 
-     * @return mixed The value in the $key or default
+     * {@inheritdoc}
      */
     public function get($key, $default = null)
     {
@@ -52,10 +45,7 @@ class ConfigRepository implements ConfigRepositoryInterface
     }
     
     /**
-     * Set value to a key
-     * 
-     * @param string $key The key name
-     * @param mixed $value The value
+     * {@inheritdoc}
      */
     public function set($key, $value)
     {
@@ -63,9 +53,7 @@ class ConfigRepository implements ConfigRepositoryInterface
     }
     
     /**
-     * Delete a key
-     * 
-     * @param string $key Key name
+     * {@inheritdoc}
      */
     public function del($key)
     {
@@ -91,12 +79,7 @@ class ConfigRepository implements ConfigRepositoryInterface
     }
     
     /**
-     * Union the repository with $repository. The values of $repository have
-     * less precedence
-     * 
-     * @param ConfigRepositoryInterface $repository
-     * 
-     * @return ConfigRepositoryInterface A new repository
+     * {@inheritdoc}
      */
     public function union(ConfigRepositoryInterface $repository)
     {
@@ -117,12 +100,7 @@ class ConfigRepository implements ConfigRepositoryInterface
     }
     
     /**
-     * Intersection the repository with $repository. The values of $repository have
-     * less precedence
-     * 
-     * @param ConfigRepositoryInterface $repository
-     * 
-     * @return ConfigRepositoryInterface A new repository
+     * {@inheritdoc}
      */
     public function intersection(ConfigRepositoryInterface $repository)
     {
@@ -145,11 +123,7 @@ class ConfigRepository implements ConfigRepositoryInterface
     }
     
     /**
-     * Validate the repository's values
-     * 
-     * @param ConfigurationInterface $definition The definition rules
-     * 
-     * @throws Exception If any value is not of the expected type, is mandatory and yet undefined, or could not be validated in some other way
+     * {@inheritdoc }
      */
     public function validateWith(ConfigurationInterface $definition)
     {
@@ -159,9 +133,7 @@ class ConfigRepository implements ConfigRepositoryInterface
     }
     
     /**
-     * Get an array representation
-     * 
-     * @return array
+     * {@inheritdoc }
      */
     public function getArray()
     {
@@ -169,9 +141,7 @@ class ConfigRepository implements ConfigRepositoryInterface
     }
     
     /**
-     * Get the repository's raw representation
-     * 
-     * @return mixed
+     * {@inheritdoc }
      */
     public function getRaw()
     {

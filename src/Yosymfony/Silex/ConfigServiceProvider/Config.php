@@ -23,6 +23,7 @@ class Config
 {
     const TYPE_TOML = 'toml';
     const TYPE_YAML = 'yaml';
+    const TYPE_JSON = 'json';
     
     private $loaders;
     private $loaderResolver;
@@ -37,7 +38,7 @@ class Config
     {
         if(null === $loaders || 0 == count($loaders))
         {
-            throw new \InvalidArgumentException('Array of loaders is empty');
+            throw new \InvalidArgumentException('The Array of loaders is empty');
         }
         
         $this->loaders = $loaders;
@@ -48,13 +49,13 @@ class Config
     /**
      * Loads a resource like file or inline configuration
      *
-     * @param mixed  $resource A resource
-     * @param string $type     The resource type
+     * @param string $resource A resource
+     * @param string $type     The resource type. Don't set this argument in files case.
      *
      * @return ConfigRepositoryInterface
      *
-     * @throws FileLoaderLoadException if the loader not found.
-     * @throws UnexpectedValueException if the loader not return a repository instance
+     * @throws Symfony\Component\Config\Exception\FileLoaderLoadException If the loader not found.
+     * @throws \UnexpectedValueException If the loader not return a repository instance
      */
     public function load($resource, $type = null)
     {

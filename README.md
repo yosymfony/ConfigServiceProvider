@@ -3,9 +3,9 @@ Config ServiceProvider for Silex
 
 A configuration ServiceProvider for Silex based on 
 [Symfony Config component](https://github.com/symfony/Config) with support for 
-Yaml and Toml.
+YAML, TOML (0.2.0) and JSON.
 
-[![Build Status](https://travis-ci.org/yosymfony/ConfigServiceProvider.png?branch=master)](https://travis-ci.org/yosymfony/ConfigServiceProvider)
+[![Build Status](https://travis-ci.org/yosymfony/ConfigServiceProvider.png?branch=develop)](https://travis-ci.org/yosymfony/ConfigServiceProvider)
 [![Latest Stable Version](https://poser.pugx.org/yosymfony/config-serviceprovider/v/stable.png)](https://packagist.org/packages/yosymfony/config-serviceprovider)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/yosymfony/ConfigServiceProvider/badges/quality-score.png?s=9354c788b66668332f215f5d7d1b7809c1ddaed0)](https://scrutinizer-ci.com/g/yosymfony/ConfigServiceProvider/)
 [![Total Downloads](https://poser.pugx.org/yosymfony/config-serviceprovider/downloads.png)](https://packagist.org/packages/yosymfony/config-serviceprovider)
@@ -18,7 +18,7 @@ Use [Composer](http://getcomposer.org/) to install Yosyfmony ConfigServiceProvid
 Add the following to your `composer.json` and run `composer update`.
 
     "require": {
-        "yosymfony/config-serviceprovider": "1.0.*@dev"
+        "yosymfony/config-serviceprovider": "dev-develop"
     }
 
 More informations about the package on 
@@ -38,16 +38,21 @@ reference it only with the file's name
         '/var/www/general-config'
     )));
     
-Load a configuration file (Yaml or Toml):
+### Load a configuration file:
 
     $repository = $app['configuration']->load('user.yml');
-    // or
-    $repository = $app['configuration']->load('user.toml');
     
     // or load with absolute path:
     $repository = $app['configuration']->load('/var/config/user1.yml');
     
-Load inline configuration:
+#### *.dist* files
+
+This library have support to `.dist` files. The location of a file follow the next hierachy:
+
+- filename.ext
+- filename.ext.dist (if filename.ext not exists)
+
+### Load inline configuration:
 
     use Yosymfony\Silex\ConfigServiceProvider\Config;
     

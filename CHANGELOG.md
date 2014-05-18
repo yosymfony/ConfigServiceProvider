@@ -10,8 +10,12 @@ CHANGELOG
 ------------------
 * [New] Added new method getRaw() in ConfigRepositoryInterface #1.
 
-1.2.0
------
+1.2.0 (2014-05-18)
+------------------
 * [New] *ConfigRepositoryOperationInterface*: Define the operations with repositories.
 * [New] Operations with repositories: *union* and *intersection* method was added to repository.
+* [New] Support to .dist files.
+* [New] Support to Toml 0.2.0.
+* [New] Support to JSON files.
+* [New] Added PHP 5.6 and HHVM to Travis CI.
 * [Deprecated] Method *mergeWith* of repository is deprecated and replaced by *union* method.
