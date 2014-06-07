@@ -87,15 +87,16 @@ class ConfigRepository implements ConfigRepositoryInterface
         {
             $result = new ConfigRepository();
             
+            foreach($main as $key => $value)
+            {
+                $result[$key] = $value;
+            }
+            
             foreach($second as $key => $value)
             {
                 if(!isset($main[$key]))
                 {
                     $result[$key] = $value;
-                }
-                else
-                {
-                    $result[$key] = $main[$key];
                 }
             }
             
