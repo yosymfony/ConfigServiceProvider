@@ -130,9 +130,12 @@ class ConfigRepositoryTest extends \PHPUnit_Framework_TestCase
         
         $union = $repositoryA->union($repositoryB);
         $this->assertInstanceOf('Yosymfony\Silex\ConfigServiceProvider\ConfigRepositoryInterface', $union);
+        $this->assertCount(3, $union);
         $this->assertEquals($union['port'], 25);
         $this->assertEquals($union['server'], 'localhost');
         $this->assertEquals($union['secure'], true);
+        
+        $this->assertCount(2, $repositoryA);
     }
     
     public function testRepositoryIntersection()
@@ -148,9 +151,12 @@ class ConfigRepositoryTest extends \PHPUnit_Framework_TestCase
         
         $intersection = $repositoryA->intersection($repositoryB);
         $this->assertInstanceOf('Yosymfony\Silex\ConfigServiceProvider\ConfigRepositoryInterface', $intersection);
+        $this->assertCount(2, $intersection);
         $this->assertEquals($intersection['port'], 25);
         $this->assertEquals($intersection['server'], 'localhost');
         $this->assertArrayNotHasKey('secure', $intersection);
+        
+        $this->assertCount(2, $repositoryA);
     }
     
     public function testRepositoryDefinitions()

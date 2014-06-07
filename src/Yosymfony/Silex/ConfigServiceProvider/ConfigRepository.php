@@ -85,15 +85,21 @@ class ConfigRepository implements ConfigRepositoryInterface
     {
         $union = function($main, $second)
         {
+            $result = new ConfigRepository();
+            
             foreach($second as $key => $value)
             {
                 if(!isset($main[$key]))
                 {
-                    $main[$key] = $value;
+                    $result[$key] = $value;
+                }
+                else
+                {
+                    $result[$key] = $main[$key];
                 }
             }
             
-            return $main;
+            return $result;
         };
         
         return $union($this, $repository);
