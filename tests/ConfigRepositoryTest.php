@@ -138,6 +138,24 @@ class ConfigRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $repositoryA);
     }
     
+    public function testRepositoryUnionMainMinor()
+    {
+        $repositoryA = new ConfigRepository();
+        $repositoryA['port'] = 25;
+        
+        $repositoryB = new ConfigRepository();
+        $repositoryB['port'] = 24;
+        $repositoryB['server'] = 'mail.yourname.com';
+        $repositoryB['secure'] = true;
+        
+        $union = $repositoryA->union($repositoryB);
+        $this->assertInstanceOf('Yosymfony\Silex\ConfigServiceProvider\ConfigRepositoryInterface', $union);
+        $this->assertCount(3, $union);
+        $this->assertEquals($union['port'], 25);
+        $this->assertEquals($union['server'], 'mail.yourname.com');
+        $this->assertEquals($union['secure'], true);   
+    }
+    
     public function testRepositoryIntersection()
     {
         $repositoryA = new ConfigRepository();
