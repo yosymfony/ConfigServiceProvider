@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+1.2.2 (2014-06-07)
+------------------
+* [Fixed] a problem with size of a main repository in union operations.
 
 1.2.1 (2014-06-07)
 ------------------
